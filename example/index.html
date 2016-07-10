@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wizard</title>
+    <link rel="stylesheet" href="wizard.css">
+</head>
+<body>
+
+    <div id="wizard">
+        <h1 class="title"></h1>
+
+        <div id="main"></div>
+
+        <span class="message"></span>
+
+        <button data-wizard-action="prev">Prev</button>
+        <button data-wizard-action="next">Next</button>
+    </div>
+
+    <script src="jquery.js"></script>
+    <script src="wizard.js"></script>
+    <script>
+        (function ($) {
+            $('#wizard').on('wizard:loadStep', function (event, stepIndex, steps) {
+                if (0 == stepIndex) {
+                    $(this).hideAction('prev');
+                } else {
+                    $(this).showAction('prev');
+                }
+
+                if (stepIndex == steps.length - 1) {
+                    $(this).hideAction('next');
+                } else {
+                    $(this).showAction('next');
+                }
+            });
+
+            $('#wizard').on('wizard:success', function (event, message, response) {
+                $('.message').text(message);
+            });
+
+            $('#wizard').on('wizard:fails', function (event, message, response) {
+                if (null != response.errors) {
+                    for (var error in response.errors) {
+                        $('[name=' + error + ']').val(response.errors[error]);
+                    }
+                }
+            });
+
+            $('#wizard').on('wizard:error', function (event, message) {
+                $('.message').text(message);
+            });
+
+            $('#wizard').wizard({
+                ajaxUrl: 'wizard.php'
+            });
+        })(jQuery);
+    </script>
+</body>
+</html>

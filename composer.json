@@ -1,0 +1,16 @@
+{
+    "name": "frost/wizard",
+    "description": "PHP Ajax wizard plugin",
+    "authors": [
+        {
+            "name": "Luis",
+            "email": "Frost_Leviathan@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Frost\\": "src/"
+        }
+    },
+    "require": {}
+}
