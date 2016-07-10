@@ -1,6 +1,7 @@
 {
     "name": "frostleviathan/wizard",
     "description": "PHP Ajax wizard plugin",
+    "license": "MIT",
     "authors": [
         {
             "name": "Luis",
